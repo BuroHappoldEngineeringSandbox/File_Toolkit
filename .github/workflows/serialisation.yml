@@ -1,0 +1,24 @@
+# Sandbox harness for validating the CI_Toolkit ci-serialisation comparator.
+# Calls the composite action at @develop, matching templates/BHE/ci-beta.yml,
+# so the production code path is exercised unmodified.
+
+name: Serialisation
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+jobs:
+  ci-serialisation:
+    runs-on: windows-2025-vs2026
+    timeout-minutes: 90
+    steps:
+      - name: Run serialisation
+        uses: BuroHappoldEngineeringAdmin/CI_Toolkit/.github/actions/ci-serialisation@develop
+        with:
+          app_id: ${{ secrets.BHOM_APP_ID }}
+          private_key: ${{ secrets.BHOM_APP_PRIVATE_KEY }}
+          base_ref: ${{ github.base_ref }}
