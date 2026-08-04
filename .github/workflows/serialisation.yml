@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 90
     steps:
       - name: Run serialisation
-        uses: BuroHappoldEngineeringAdmin/CI_Toolkit/.github/actions/ci-serialisation@develop
+        uses: BuroHappoldEngineeringAdmin/CI_Toolkit/.github/actions/ci-serialisation@validate/per-leg-population
         with:
           app_id: ${{ secrets.BHOM_APP_ID }}
           private_key: ${{ secrets.BHOM_APP_PRIVATE_KEY }}
