@@ -34,7 +34,7 @@ namespace BH.Engine.Adapters.File
     {
         [Description("If the targetPath points to a file that exists, return the same filepath with appended `- Copy (i)`, " +
             "where `i` is the first index pointing to a non existing file.")]
-        public static string NewFilenameIfExists(string targetPath)
+        public static string NewFilenameIfExists(string targetPath, bool skipTrailingNumber = false)
         {
             int i = 0;
             do
