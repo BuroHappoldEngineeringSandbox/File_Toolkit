@@ -170,3 +170,4 @@ namespace BH.Adapter.File
 
 
 // Touched to exercise the ci-versioning changed-file gate (*.cs). Validation only.
+// Re-trigger for subject-assembly attribution validation.
