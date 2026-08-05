@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 90
     steps:
       - name: Run ci-versioning
-        uses: BuroHappoldEngineeringAdmin/CI_Toolkit/.github/actions/ci-versioning@fix/ci-versioning-upgrade-recapture
+        uses: BuroHappoldEngineeringAdmin/CI_Toolkit/.github/actions/ci-versioning@fix/recapture-on-cache-hit
         with:
           app_id: ${{ secrets.BHOM_APP_ID }}
           private_key: ${{ secrets.BHOM_APP_PRIVATE_KEY }}
