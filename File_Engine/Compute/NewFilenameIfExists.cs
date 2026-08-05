@@ -22,6 +22,7 @@
 
 using System;
 using System.Collections.Generic;
+using BH.oM.Base.Attributes;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -34,7 +35,8 @@ namespace BH.Engine.Adapters.File
     {
         [Description("If the targetPath points to a file that exists, return the same filepath with appended `- Copy (i)`, " +
             "where `i` is the first index pointing to a non existing file.")]
-        public static string NewFilenameIfExists(string targetPath)
+        [PreviousVersion("9.3", "BH.Engine.Adapters.File.Compute.NewFilenameIfExists(System.String)")]
+        public static string NewFilenameIfExists(string targetPath, bool skipTrailingNumber = false)
         {
             int i = 0;
             do
