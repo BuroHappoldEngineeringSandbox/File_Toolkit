@@ -1,0 +1,25 @@
+# Sandbox proxy for the CI_Toolkit Versioning check.
+# Calls the composite action: CI_Toolkit has no reusable
+# .github/workflows/ci-versioning.yml, only .github/actions/ci-versioning.
+# Kept at @develop so this repo stays usable as a validation subject;
+# retarget to a branch when validating a fix, then bring it back.
+
+name: Versioning
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+jobs:
+  ci-versioning:
+    runs-on: windows-2025-vs2026
+    timeout-minutes: 90
+    steps:
+      - name: Run ci-versioning
+        uses: BuroHappoldEngineeringAdmin/CI_Toolkit/.github/actions/ci-versioning@develop
+        with:
+          app_id: ${{ secrets.BHOM_APP_ID }}
+          private_key: ${{ secrets.BHOM_APP_PRIVATE_KEY }}
