@@ -1,0 +1,5 @@
+{
+  "MessageForNoUpgrade": {
+    "BH.Engine.Adapters.File.Query.SandboxScanRootProbe": "Sandbox validation entry for CI_Toolkit fix/ci-versioning-gate-and-scan-root. Proves the upgrade scan reaches a Versioning_NN.json committed in the calling repo. Not a real deprecation."
+  }
+}
