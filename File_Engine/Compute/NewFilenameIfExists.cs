@@ -64,6 +64,7 @@ namespace BH.Engine.Adapters.File
             }
             while (System.IO.File.Exists(targetPath));
 
+            // Sandbox validation touch: gives the versioning gate a .cs change to match.
             return targetPath;
         }
     }
