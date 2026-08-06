@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 90
     steps:
       - name: Run ci-versioning
-        uses: BuroHappoldEngineeringAdmin/CI_Toolkit/.github/actions/ci-versioning@8bbbaea4f15e89c0492adc5468cd00daaa1ec82f
+        uses: BuroHappoldEngineeringAdmin/CI_Toolkit/.github/actions/ci-versioning@develop
         with:
           app_id: ${{ secrets.BHOM_APP_ID }}
           private_key: ${{ secrets.BHOM_APP_PRIVATE_KEY }}
