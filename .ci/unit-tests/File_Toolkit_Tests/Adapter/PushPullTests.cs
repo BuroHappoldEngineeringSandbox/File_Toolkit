@@ -106,3 +106,4 @@ namespace BH.Tests.Adapter
 
 
 // validation probe: concurrency/cancel behaviour under a required check (ruleset 20630326)
+// probe B, commit B: supersede the in-flight run
