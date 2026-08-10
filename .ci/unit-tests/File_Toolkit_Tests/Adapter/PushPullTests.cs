@@ -104,3 +104,5 @@ namespace BH.Tests.Adapter
 }
 
 
+
+// validation probe: concurrency/cancel behaviour under a required check (ruleset 20630326)
