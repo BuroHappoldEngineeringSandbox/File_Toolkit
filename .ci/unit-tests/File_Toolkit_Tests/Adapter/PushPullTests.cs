@@ -104,3 +104,5 @@ namespace BH.Tests.Adapter
 }
 
 
+
+// fork-PR probe: does ci-versioning run and report when secrets are unavailable?
