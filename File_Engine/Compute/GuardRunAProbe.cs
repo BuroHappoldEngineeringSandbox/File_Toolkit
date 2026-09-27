@@ -32,9 +32,9 @@ namespace BH.Engine.Adapters.File
         // BuroHappoldEngineering/Revit_Placement_Tool run 35987205818. Delete with the branch.
 
         [Description("TEMPORARY test probe. Do not use. See test/guard-run-a-base.")]
-        public static int GuardRunAProbeA(BH.oM.Geometry.Point[] points)
+        public static int GuardRunAProbeA(BH.oM.Adapters.File.FSFile[] files)
         {
-            return points == null ? 0 : points.Length;
+            return files == null ? 0 : files.Length;
         }
 
         [Description("TEMPORARY test probe. Do not use. See test/guard-run-a-base.")]
