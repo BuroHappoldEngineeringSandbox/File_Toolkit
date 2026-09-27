@@ -37,11 +37,5 @@ namespace BH.Engine.Adapters.File
         {
             return files == null ? 0 : files.Length;
         }
-
-        [Description("TEMPORARY test probe. Do not use. See test/guard-run-b-base.")]
-        public static int GuardRunBProbeB(BH.oM.Base.CustomObject[] objects)
-        {
-            return objects == null ? 0 : objects.Length;
-        }
     }
 }
