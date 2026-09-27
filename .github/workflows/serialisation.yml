@@ -22,3 +22,5 @@ jobs:
           app_id: ${{ secrets.BHOM_APP_ID }}
           private_key: ${{ secrets.BHOM_APP_PRIVATE_KEY }}
           base_ref: ${{ github.base_ref }}
+          # TEMPORARY, run B only: any single baseline failure trips the guard.
+          implausible_baseline_ratio: '0.0001'
