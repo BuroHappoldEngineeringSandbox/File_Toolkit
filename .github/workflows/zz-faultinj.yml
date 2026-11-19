@@ -21,12 +21,10 @@ jobs:
     steps:
       - name: CI_Toolkit develop head at start
         shell: pwsh
-        run: |
-          git ls-remote https://github.com/BHoM/CI_Toolkit.git refs/heads/develop
-          git ls-remote https://github.com/BuroHappoldEngineeringSandbox/CI_Toolkit.git refs/heads/fix/serialisation-verify-source-sandbox
+        run: git ls-remote https://github.com/BHoM/CI_Toolkit.git refs/heads/develop
 
       - name: Run serialisation
-        uses: BuroHappoldEngineeringSandbox/CI_Toolkit/.github/actions/ci-serialisation@c39fbc22858d903f59b4c5abac5d28a32e668fec
+        uses: BHoM/CI_Toolkit/.github/actions/ci-serialisation@38bc7fca1f05f1a366f5b26cf4c28ed4897c79e8
         with:
           app_id: ${{ secrets.BHOM_APP_ID }}
           private_key: ${{ secrets.BHOM_APP_PRIVATE_KEY }}
@@ -66,6 +64,4 @@ jobs:
       - name: CI_Toolkit develop head at end
         if: always()
         shell: pwsh
-        run: |
-          git ls-remote https://github.com/BHoM/CI_Toolkit.git refs/heads/develop
-          git ls-remote https://github.com/BuroHappoldEngineeringSandbox/CI_Toolkit.git refs/heads/fix/serialisation-verify-source-sandbox
+        run: git ls-remote https://github.com/BHoM/CI_Toolkit.git refs/heads/develop
