@@ -53,3 +53,4 @@ namespace BH.oM.Adapters.File
 
 
 
+// Temporary change for fault-injection case F4; this branch is deleted after the test.
