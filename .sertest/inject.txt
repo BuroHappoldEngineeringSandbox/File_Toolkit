@@ -1,15 +1,3 @@
-# TEMPORARY fault-injection table for a Sandbox experiment. Deleted with this branch.
-# Read on the baseline leg, where this branch is checked out; the row is chosen by GITHUB_HEAD_REF.
-marker: base-table
-case fi/F0:
-case fi/F1: Types=fail-all
-case fi/F2: Objects=fail-all
-case fi/F3: Types=fail-all
-case fi/F3b: Types=fail-all
-case fi/F4: Types=fail-all
-case fi/F5: Methods=fail-all
-case fi/F6: Methods=fail-all
-case fi/F6b: Methods=fail-all
-case fi/F7: Types=throw; Methods=fail-first:2
-case fi/F8:
-case fi/F8b: Types=throw
+# TEMPORARY fault-injection marker for this head branch (branch leg).
+marker: head-F3
+Types=fail-all+rename
