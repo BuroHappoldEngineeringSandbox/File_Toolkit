@@ -1,0 +1,13 @@
+name: zz-exit2
+description: TEMPORARY. Mirrors ci-serialisation action.yml:275-278 inside a composite action, with a native command returning 2.
+runs:
+  using: composite
+  steps:
+    - name: Exit 2 as the compare step does
+      shell: pwsh
+      run: |
+        cmd /c "echo native command returning 2 & exit 2"
+        $code = $LASTEXITCODE
+        $verdict = switch ($code) { 0 { 'ok' } 2 { 'baseline-unusable' } default { 'regression' } }
+        Write-Host "captured code=$code verdict=$verdict"
+        if ($code -ne 0) { exit $code }

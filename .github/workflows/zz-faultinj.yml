@@ -1,0 +1,67 @@
+name: zz-faultinj
+
+# TEMPORARY Sandbox experiment: the production ci-serialisation action against deliberately
+# broken legs. Runs only for pull requests into fi/base and is deleted with that branch.
+
+on:
+  pull_request:
+    branches: [fi/base]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: zz-faultinj-${{ github.head_ref }}
+  cancel-in-progress: false
+
+jobs:
+  ci-serialisation:
+    runs-on: windows-2025-vs2026
+    timeout-minutes: 90
+    steps:
+      - name: CI_Toolkit develop head at start
+        shell: pwsh
+        run: git ls-remote https://github.com/BHoM/CI_Toolkit.git refs/heads/develop
+
+      - name: Run serialisation
+        uses: BHoM/CI_Toolkit/.github/actions/ci-serialisation@38bc7fca1f05f1a366f5b26cf4c28ed4897c79e8
+        with:
+          app_id: ${{ secrets.BHOM_APP_ID }}
+          private_key: ${{ secrets.BHOM_APP_PRIVATE_KEY }}
+          base_ref: ${{ github.base_ref }}
+          serialisation_engine_repo: BuroHappoldEngineeringSandbox/BHoM_Engine
+          test_toolkit_repo: BuroHappoldEngineeringSandbox/Test_Toolkit
+
+      - name: Dump step summary files
+        if: always()
+        shell: pwsh
+        run: |
+          $dir = Join-Path $env:RUNNER_TEMP "_runner_file_commands"
+          Write-Host "Listing $dir"
+          Get-ChildItem $dir -ErrorAction SilentlyContinue | ForEach-Object { Write-Host ("{0}  {1} bytes" -f $_.Name, $_.Length) }
+          Get-ChildItem $dir -Filter "step_summary_*" -ErrorAction SilentlyContinue | ForEach-Object {
+            Write-Host "----- BEGIN $($_.Name)"
+            Get-Content $_.FullName | ForEach-Object { Write-Host "SUMMARY| $_" }
+            Write-Host "----- END $($_.Name)"
+          }
+
+      - name: Item 91 check, workflow-level step
+        if: always() && github.head_ref == 'fi/F0'
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          cmd /c "echo native command returning 2 & exit 2"
+          $code = $LASTEXITCODE
+          $verdict = switch ($code) { 0 { 'ok' } 2 { 'baseline-unusable' } default { 'regression' } }
+          Write-Host "captured code=$code verdict=$verdict"
+          if ($code -ne 0) { exit $code }
+
+      - name: Item 91 check, inside a composite action
+        if: always() && github.head_ref == 'fi/F0'
+        continue-on-error: true
+        uses: ./.github/actions/zz-exit2
+
+      - name: CI_Toolkit develop head at end
+        if: always()
+        shell: pwsh
+        run: git ls-remote https://github.com/BHoM/CI_Toolkit.git refs/heads/develop
