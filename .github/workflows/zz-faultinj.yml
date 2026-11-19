@@ -24,7 +24,7 @@ jobs:
         run: git ls-remote https://github.com/BHoM/CI_Toolkit.git refs/heads/develop
 
       - name: Run serialisation
-        uses: BHoM/CI_Toolkit/.github/actions/ci-serialisation@38bc7fca1f05f1a366f5b26cf4c28ed4897c79e8
+        uses: BuroHappoldEngineeringSandbox/CI_Toolkit/.github/actions/ci-serialisation@ef316143336b078233fc4394bc49d0a5d6bc43cd
         with:
           app_id: ${{ secrets.BHOM_APP_ID }}
           private_key: ${{ secrets.BHOM_APP_PRIVATE_KEY }}
